@@ -15,3 +15,9 @@ CREATE TABLE addresses (
     Add_Zip VARCHAR(10),
     Add_PartyID UUID REFERENCES clients(PTY_ID)
 );
+
+CREATE TABLE SYS_State (
+    Stt_ID CHAR(36) PRIMARY KEY,
+    Stt_Name VARCHAR(100),
+    Stt_Code VARCHAR(10)
+);
