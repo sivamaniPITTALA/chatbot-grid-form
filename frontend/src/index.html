@@ -1,1 +1,233 @@
 // index.html file
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBot with Right Sidebar and Menu</title>
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        /* Chatbot Container */
+        .chatBot {
+            position: relative;
+            width: 500px;
+            height: 600px;
+            margin: 50px auto;
+            border: 3px solid #a308d2;
+            border-radius: 10px;
+            background-color: #f7f7f7;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background-color: #a308d2;
+            text-align: center;
+            padding: 10px 0;
+            border-radius: 7px 7px 0 0;
+            position: relative;
+        }
+
+        header h2 {
+            color: #fff;
+            margin: 0;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            font-family: "Lato", sans-serif;
+            font-size: 50px;
+            height: 100%;
+            width: 250px;
+            position: absolute;
+            top: 0;
+            right: -250px;
+            background-color: #fff;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            z-index: 10;
+        }
+
+        .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            left: 25px;
+            font-size: 36px;
+            cursor: pointer;
+            color: #161515;
+        }
+        .acc{
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #a308d2;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            position: absolute;
+            top: 1px;
+            left: 15px;
+            z-index: 10;
+        }
+        .openbtn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #a308d2;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            position: absolute;
+            top: 1px;
+            right: 15px;
+            z-index: 10;
+        }
+
+        .openbtn:hover {
+            background-color: #444;
+        }
+
+        .chatbox {
+            padding: 15px;
+            list-style: none;
+            overflow-y: auto;
+            height: 400px;
+        }
+
+        .chatbox li {
+            margin-bottom: 10px;
+        }
+
+        .chat p {
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+
+        .chat-outgoing p {
+            background-color: #162887;
+            align-self: flex-end;
+            color: #fff;
+        }
+
+        .chat-incoming p {
+            background-color: #eaeaea;
+        }
+
+        .chat-input {
+            padding: 10px;
+            border-top: 1px solid #ccc;
+            display: flex; /* Make chat input a flex container */
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-input textarea {
+            width: 80%; /* Adjust width to leave space for the button */
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            resize: none;
+            outline: none;
+            background-color: #dcdcdc85;
+            font-size: 16px;
+            font-weight: 600;
+            height: 25px;
+        }
+
+        #sendBTN {
+            width: 18%; /* Adjusted to fit next to the textarea */
+            padding: 8px;
+            border: 0;
+            outline: none;
+            font-size: 20px;
+            font-weight: 600;
+            border-radius: 7px;
+            background-color: #a308d2;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-height: 450px) {
+            .sidebar {
+                padding-top: 15px;
+            }
+
+            .sidebar a {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="chatBot">
+        <header>
+            <h2>Welcome to LiveChat</h2>
+            <button class="openbtn" onclick="toggleSidebar()">☰</button>
+            <button class="acc" style="height: 40px" style ="width: 40px;">⚉</button> <!-- Sidebar button in header -->
+        </header>
+        
+        <!-- Sidebar -->
+        <div id="mySidebar" class="sidebar">
+            <span class="closebtn" onclick="toggleSidebar()">×</span>
+            <a href="javascript:changeAccount()" style="color: #161515;">Change Account</a>
+            <a href="javascript:logout()" style="color: #161515;">Logout</a>
+            <a onclick="cancel()" style="color: #161515;">Close Chat</a>
+        </div>
+
+        <ul class="chatbox">
+            <li class="chat-incoming chat">
+                <p>Hey! How can I assist you today?</p>
+            </li>
+        </ul>
+        <div class="chat-input">
+            <textarea rows="0" cols="17" placeholder="Enter a message..."></textarea>
+            <button id="sendBTN">Send</button>
+        </div>
+  </div>
+
+  <script src="script.js" defer></script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("mySidebar");
+            const isVisible = sidebar.style.right === "0px";
+            sidebar.style.right = isVisible ? "-250px" : "0px";
+        }
+
+        function changeAccount() {
+            alert('Changing Account...');
+        }
+
+        function logout() {
+            alert('Logging out...');
+        }
+
+        function closeChat() {
+            alert('Closing Chat...');
+        }
+    </script>
+   
+
+</body>
+
+</html>
